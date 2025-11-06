@@ -1,21 +1,24 @@
-
 # MSCS 634 – Lab 2: KNN and RNN Classifier Performance
 
-## Author
-** Komalben Suthar**
+## Purpose
 
-## Overview
-This lab explores the performance of K-Nearest Neighbors (KNN) and Radius Neighbors (RNN) classifiers on the Wine dataset from sklearn. It analyzes how different parameter values (K and radius) influence model accuracy.
+This lab explores the performance of two different nearest neighbor classification algorithms, K-Nearest Neighbors (KNN) and Radius Neighbors Classifier (RNN), on the Wine dataset. The goal is to understand how the choice of parameters (K for KNN and radius for RNN) affects the accuracy of the classifiers.
 
-## Key Insights
-- KNN achieved the highest accuracy when K = X (best performing value).
-- RNN performance was optimal around radius = Y.
-- KNN is generally simpler and works well with consistent data density, while RNN adapts better to varying sample densities.
+## Key Insights and Accuracy Trends
 
-## Challenges
-- Selecting appropriate radius values for RNN required experimentation.
-- Ensuring fair comparison between models with different hyperparameters.
+*   **KNN Classifier:**
+    *   The accuracy of the KNN classifier varied with the value of K.
+    *   Higher accuracy was observed at K = 5, 11, 15, and 21.
+    *   This suggests that for this dataset, a small number of neighbors (K=1) might be too sensitive to noise, while increasing K helps to smooth the decision boundaries and improve generalization.
 
-## Files
-- `Lab2_KNN_RNN_Wine.ipynb`: Full Jupyter Notebook with analysis.
-- `README.md`: Summary and results.
+*   **RNN Classifier:**
+    *   The accuracy of the RNN classifier also varied with the specified radius.
+    *   Performance generally decreased as the radius increased.
+    *   This indicates that a larger radius might include too many irrelevant samples, negatively impacting the classification accuracy. A smaller radius seems to be more effective for this dataset.
+
+## Challenges and Decisions
+
+*   **Choosing Parameter Values:** Selecting appropriate values for K in KNN and radius in RNN was a key challenge. We explored a range of values for both algorithms to observe the impact on accuracy.
+*   **Interpreting Results:** Analyzing the accuracy trends required careful consideration of how each algorithm works and how the parameters influence the decision boundaries.
+*   **Data Splitting:** The dataset was split into training and testing sets (80/20 split with stratification) to ensure the models were evaluated on unseen data and to maintain the class distribution in both sets. The `random_state` was set for reproducibility.
+*   **Outlier Handling in RNN:** For the Radius Neighbors Classifier, we used the `outlier_label=0` parameter to assign a specific label to samples that have no neighbors within the specified radius.
